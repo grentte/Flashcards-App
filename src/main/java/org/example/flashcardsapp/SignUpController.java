@@ -21,10 +21,10 @@ public class SignUpController {
     private URL location;
 
     @FXML
-    private PasswordField confirmPasswordField;
+    private TextField loginField;
 
     @FXML
-    private TextField loginField;
+    private TextField nameField;
 
     @FXML
     private PasswordField passwordField;
@@ -58,8 +58,9 @@ public class SignUpController {
             }
         });
 
+        DatabaseHandler dbHandler = new DatabaseHandler();
         signUpButton.setOnAction(event -> {
-            // регистрация
+            dbHandler.signUpUser(loginField.getText(), nameField.getText(), passwordField.getText());
             System.out.println("регистрация");
         });
     }

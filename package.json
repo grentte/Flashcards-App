@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "mysql": "^2.18.1",
+    "node": "^18.20.4",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }
