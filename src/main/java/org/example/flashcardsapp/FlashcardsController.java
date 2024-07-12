@@ -45,6 +45,23 @@ public class FlashcardsController {
             else {
                 int counter = loginUser(loginText, passwordText);
                 if(counter >= 1) {
+
+                    // закрываем окно с авторизацией
+                    Stage currentStage = (Stage) loginSignUpButton.getScene().getWindow();
+                    currentStage.close();
+
+                    // открываем окно с домашней страницей
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("home.fxml"));
+
+                    try {
+                        Parent root = loader.load();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("Вход...");
                 }
                 else {

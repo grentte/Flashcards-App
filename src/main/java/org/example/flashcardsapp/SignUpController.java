@@ -60,6 +60,7 @@ public class SignUpController {
 
         signUpButton.setOnAction(event -> {
             signUpNewUser();
+            System.out.println("регистрация");
         });
     }
 

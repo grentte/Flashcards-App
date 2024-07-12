@@ -24,52 +24,52 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="316.0" prefHeight="85.0" prefWidth="700.0" style="-fx-background-color: #007FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutY="334.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #007FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="home" alignment="BASELINE_CENTER" ellipsisString="20" layoutX="179.0" layoutY="8.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="76.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="200.0">
+            <Button fx:id="home" alignment="BASELINE_CENTER" ellipsisString="20" layoutX="222.0" layoutY="5.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="48.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="222.0">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true">
+                  <ImageView fitHeight="29.0" fitWidth="43.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../Pictures/Screenshots/Снимок%20экрана%202024-07-11%20192805.png" />
+                        <Image url="@../icons/home.png"> </Image>
                      </image>
                   </ImageView>
                </graphic>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
             </Button>
-            <Button fx:id="createadeck" layoutX="313.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #007FFF;" textFill="#fafafa" AnchorPane.leftAnchor="350.0">
+            <Button fx:id="createaDeck" layoutX="328.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" AnchorPane.leftAnchor="328.0">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/Screenshots/Снимок%20экрана%202024-07-11%20212604.png" />
+                        <Image url="@../icons/decks.png"> </Image>
                      </image>
                   </ImageView>
                </graphic>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
             </Button>
-            <Button fx:id="accaunt" layoutX="487.0" layoutY="7.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="56.0" style="-fx-background-color: #007FFF;" textAlignment="JUSTIFY" textFill="#fafafa" AnchorPane.leftAnchor="500.0">
+            <Button fx:id="account" layoutX="433.0" layoutY="6.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="48.0" style="-fx-background-color: #007FFF;" textAlignment="JUSTIFY" textFill="#fafafa" AnchorPane.leftAnchor="433.0">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="28.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Pictures/Screenshots/Снимок%20экрана%202024-07-11%20213412.png" />
+                        <Image url="@../icons/account.png"> </Image>
                      </image>
                   </ImageView>
                </graphic>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
             </Button>
          </children>
       </AnchorPane>
