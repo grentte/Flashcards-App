@@ -1,4 +1,4 @@
-package org.example.flashcardsapp;
+package org.example.flashcardsapp.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

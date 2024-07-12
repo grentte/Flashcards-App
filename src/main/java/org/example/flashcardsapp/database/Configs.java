@@ -1,4 +1,4 @@
-package org.example.flashcardsapp;
+package org.example.flashcardsapp.database;
 
 public class Configs {
     protected String dbHost = "localhost";
