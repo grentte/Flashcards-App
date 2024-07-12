@@ -58,10 +58,20 @@ public class SignUpController {
             }
         });
 
-        DatabaseHandler dbHandler = new DatabaseHandler();
         signUpButton.setOnAction(event -> {
-            dbHandler.signUpUser(loginField.getText(), nameField.getText(), passwordField.getText());
-            System.out.println("регистрация");
+            signUpNewUser();
         });
+    }
+
+    private void signUpNewUser() {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+
+        String login = loginField.getText();
+        String name = nameField.getText();
+        String password = passwordField.getText();
+
+        User user = new User(login, name, password);
+
+        dbHandler.signUpUser(user);
     }
 }
