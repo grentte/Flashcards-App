@@ -1,16 +1,14 @@
-package org.example.flashcardsapp;
+package org.example.flashcardsapp.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.User;
 
 public class SignUpController {
 
@@ -40,26 +38,18 @@ public class SignUpController {
         registerSignInButton.setOnAction(event -> {
             System.out.println("переход на страницу авторизации");
 
-            // закрываем окно с регистрацией
+            // Переходим на страницу авторизации
+            FxmlLoader fxmlLoader = new FxmlLoader();
+            fxmlLoader.loadFxml("/org/example/flashcardsapp/login.fxml");
+
+            // Закрываем текущее окно
             Stage currentStage = (Stage) registerSignInButton.getScene().getWindow();
             currentStage.close();
-
-            // переходим на страницу авторизации
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("login.fxml"));
-
-            try {
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         });
 
         signUpButton.setOnAction(event -> {
             signUpNewUser();
+            System.out.println("регистрация");
         });
     }
 

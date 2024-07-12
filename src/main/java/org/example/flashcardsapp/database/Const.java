@@ -1,4 +1,4 @@
-package org.example.flashcardsapp;
+package org.example.flashcardsapp.database;
 
 public class Const {
     public static final String USER_TABLE = "regUsers";

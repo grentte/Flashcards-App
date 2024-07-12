@@ -1,4 +1,4 @@
-package org.example.flashcardsapp;
+package org.example.flashcardsapp.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,13 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.User;
 
 public class FlashcardsController {
 
@@ -41,13 +40,19 @@ public class FlashcardsController {
             String passwordText = passwordField.getText().trim();
             if (loginText.isEmpty() || passwordText.isEmpty()) {
                 System.out.println("Пустые поля");
-            }
-            else {
+            } else {
                 int counter = loginUser(loginText, passwordText);
-                if(counter >= 1) {
+                if (counter >= 1) {
                     System.out.println("Вход...");
-                }
-                else {
+
+                    // Открываем окно с домашней страницей
+                    FxmlLoader fxmlLoader = new FxmlLoader();
+                    fxmlLoader.loadFxml("/org/example/flashcardsapp/home.fxml");
+
+                    // Закрываем окно с авторизацией
+                    Stage currentStage = (Stage) authSignInButton.getScene().getWindow();
+                    currentStage.close();
+                } else {
                     System.out.println("Неверные логин или пароль");
                 }
             }
@@ -56,24 +61,16 @@ public class FlashcardsController {
         loginSignUpButton.setOnAction(event -> {
             System.out.println("переход на страницу регистрации");
 
-            // закрываем окно с авторизацией
+            // Открываем окно с регистрацией
+            FxmlLoader fxmlLoader = new FxmlLoader();
+            fxmlLoader.loadFxml("/org/example/flashcardsapp/signUp.fxml");
+
+            // Закрываем окно с авторизацией
             Stage currentStage = (Stage) loginSignUpButton.getScene().getWindow();
             currentStage.close();
-
-            // открываем окно с регистрацией
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("signUp.fxml"));
-
-            try {
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         });
     }
+
     private int loginUser(String loginText, String loginPassword) {
         DatabaseHandler dbHandler = new DatabaseHandler();
         User user = new User();
@@ -82,13 +79,12 @@ public class FlashcardsController {
         ResultSet result = dbHandler.getUser(user);
 
         int counter = 0;
-        while(true) {
-            try {
-                if (!result.next()) break;
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+        try {
+            while (result.next()) {
+                counter++;
             }
-            counter++;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return counter;
     }
