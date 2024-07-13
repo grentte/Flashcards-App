@@ -7,41 +7,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.HomePageController">
    <children>
       <AnchorPane prefHeight="50.0" prefWidth="700.0" style="-fx-background-color: #007FFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="ssilkanasayt" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: #007FFF;" text="ссылканасайт.ком" textFill="#fafafa" AnchorPane.rightAnchor="40.0">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </Button>
-            <Label layoutX="275.0" layoutY="1.0" prefHeight="50.0" prefWidth="150.0" text="  Flashcards" textAlignment="CENTER" textFill="#fafafa" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="1.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="3.0" prefHeight="48.0" prefWidth="700.0" text="  Flashcards" textAlignment="CENTER" textFill="#fafafa" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="334.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #007FFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button fx:id="home" alignment="BASELINE_CENTER" ellipsisString="20" layoutX="222.0" layoutY="5.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="48.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="222.0">
+            <Button fx:id="webSiteUrlButton" layoutX="510.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: #007FFF;" text="ссылканасайт.ком" textFill="#fafafa">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
-               <padding>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </padding>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="51.0" prefHeight="352.0" prefWidth="48.0" style="-fx-background-color: #007FFF;" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="51.0">
+         <children>
+            <Button fx:id="homeButton" ellipsisString="20" layoutX="-4.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" textOverrun="CENTER_ELLIPSIS" AnchorPane.topAnchor="7.0">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="43.0" pickOnBounds="true">
+                  <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true">
                      <image>
                         <Image url="@../icons/home.png"> </Image>
                      </image>
                   </ImageView>
                </graphic>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
             </Button>
-            <Button fx:id="createaDeck" layoutX="328.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="44.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" AnchorPane.leftAnchor="328.0">
+            <Button fx:id="decksButton" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="76.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="38.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
@@ -49,29 +50,34 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
                <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/decks.png"> </Image>
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="account" layoutX="433.0" layoutY="6.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="48.0" style="-fx-background-color: #007FFF;" textAlignment="JUSTIFY" textFill="#fafafa" AnchorPane.leftAnchor="433.0">
+            <Button fx:id="accountButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="-11.0" layoutY="112.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #007FFF;" textAlignment="JUSTIFY" textFill="#fafafa" AnchorPane.topAnchor="112.0">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
-               <padding>
-                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </padding>
                <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons/account.png"> </Image>
                      </image>
                   </ImageView>
                </graphic>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
             </Button>
          </children>
       </AnchorPane>
+      <Text layoutX="193.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ЭТО ГЛАВНАЯ СТРАНИЦА" wrappingWidth="314.6689453125">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

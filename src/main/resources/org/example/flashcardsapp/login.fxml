@@ -13,36 +13,36 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <AnchorPane layoutY="88.0" prefHeight="392.0" prefWidth="640.0" style="-fx-background-color: #fafafa;">
+      <AnchorPane layoutY="88.0" prefHeight="392.0" prefWidth="640.0" style="-fx-background-color: #fafafa;" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="-20.0" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="60.0">
          <children>
-            <TextField fx:id="loginField" layoutX="193.0" layoutY="134.0" prefHeight="26.0" prefWidth="254.0" promptText="Логин" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;">
+            <TextField fx:id="loginField" alignment="CENTER" layoutX="193.0" layoutY="134.0" prefHeight="26.0" prefWidth="254.0" promptText="Логин" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="193.0">
                <font>
                   <Font size="17.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="193.0" layoutY="196.0" prefHeight="26.0" prefWidth="254.0" promptText="Пароль" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;">
+            <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="193.0" layoutY="196.0" prefHeight="26.0" prefWidth="254.0" promptText="Пароль" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 5;" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="193.0">
                <font>
                   <Font size="17.0" />
                </font>
             </PasswordField>
-            <Label layoutX="204.0" layoutY="48.0" text="Авторизация" textFill="#111111">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="48.0" prefHeight="40.0" prefWidth="640.0" text="Авторизация" textFill="#111111" AnchorPane.leftAnchor="-20.0" AnchorPane.rightAnchor="-20.0">
                <font>
                   <Font name="Andale Mono" size="35.0" />
                </font>
             </Label>
-            <Button fx:id="authSignInButton" layoutX="267.0" layoutY="265.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" style="-fx-background-color: #2C5AE2; -fx-border-radius: 5;" text="Войти" textFill="#fafafa">
+            <Button fx:id="authSignInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="267.0" layoutY="265.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" style="-fx-background-color: #007FFF; -fx-border-radius: 5;" text="Войти" textFill="#fafafa" AnchorPane.leftAnchor="267.0" AnchorPane.rightAnchor="268.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button fx:id="loginSignUpButton" layoutX="241.0" layoutY="322.0" mnemonicParsing="false" style="-fx-background-color: #fafafa; -fx-border-radius: 5;" text="Зарегестрироваться" textFill="#408bfc">
+            <Button fx:id="loginSignUpButton" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="640.0" style="-fx-background-color: #fafafa; -fx-border-radius: 5;" text="Зарегестрироваться" textFill="#408bfc" AnchorPane.leftAnchor="-20.0" AnchorPane.rightAnchor="-20.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Label layoutX="188.0" layoutY="14.0" text="Flashcards!" textFill="#fafafa">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="14.0" prefHeight="46.0" prefWidth="640.0" text="Flashcards!" textFill="#fafafa" AnchorPane.leftAnchor="-20.0" AnchorPane.rightAnchor="-20.0">
          <font>
             <Font name="Andale Mono" size="40.0" />
          </font>
