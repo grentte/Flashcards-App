@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.DecksPageController">
     <children>
@@ -74,10 +73,6 @@
                 </Button>
             </children>
         </AnchorPane>
-        <Text layoutX="198.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ТУТ КОЛОДЫ КОЛОДУСЫ" textAlignment="CENTER" wrappingWidth="303.21630859375">
-            <font>
-                <Font size="49.0" />
-            </font>
-        </Text>
+      <Button fx:id="deckCreationButton" layoutX="295.0" layoutY="87.0" mnemonicParsing="false" text="Создать колоду" />
     </children>
 </AnchorPane>

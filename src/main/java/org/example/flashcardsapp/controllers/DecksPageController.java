@@ -18,6 +18,9 @@ public class DecksPageController {
     private Button accountButton;
 
     @FXML
+    private Button deckCreationButton;
+
+    @FXML
     private Button homeButton;
 
     @FXML
@@ -48,6 +51,11 @@ public class DecksPageController {
 
             // Открываем ссылку на сайт
             NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
+        });
+
+        deckCreationButton.setOnAction(event -> {
+            System.out.println("создание колоды");
+            // создание колоды
         });
 
     }
