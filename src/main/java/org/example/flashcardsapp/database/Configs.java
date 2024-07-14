@@ -1,9 +1,9 @@
 package org.example.flashcardsapp.database;
 
 public class Configs {
-    protected String dbHost = "localhost";
-    protected String dbPort = "3306";
-    protected String dbName = "auth";
-    protected String dbUser = "root";
-    protected String dbPass = "mysql123$";
+    protected static String dbHost = "localhost";
+    protected static String dbPort = "3306";
+    protected static String dbName = "auth";
+    protected static String dbUser = "root";
+    protected static String dbPass = "1234";
 }

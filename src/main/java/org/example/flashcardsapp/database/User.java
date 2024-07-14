@@ -13,6 +13,9 @@ public class User {
 
     public User() {}
 
+    public User(int i, String testLogin, String testName, String testPassword) {
+    }
+
     public String getLogin() {
         return login;
     }

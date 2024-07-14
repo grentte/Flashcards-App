@@ -74,10 +74,10 @@
                 </Button>
             </children>
         </AnchorPane>
-      <Text layoutX="235.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ЭТО ТВОЙ АККАУНТ" textAlignment="CENTER" wrappingWidth="230.21630859375">
-         <font>
-            <Font size="49.0" />
-         </font>
-      </Text>
+        <Text layoutX="235.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ЭТО ТВОЙ АККАУНТ" textAlignment="CENTER" wrappingWidth="230.21630859375">
+            <font>
+                <Font size="49.0" />
+            </font>
+        </Text>
     </children>
 </AnchorPane>

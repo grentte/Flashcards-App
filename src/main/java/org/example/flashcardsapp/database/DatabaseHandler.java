@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 public class DatabaseHandler extends Configs {
-    private Connection dbConnection;
+    private static Connection dbConnection;
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    public static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
 
         // Используем правильное имя класса драйвера
@@ -49,5 +49,39 @@ public class DatabaseHandler extends Configs {
             e.printStackTrace();
         }
         return resSet;
+    }
+
+    public static class DeckDAO {
+        public void addDeck(Deck deck, int userId) {
+            String sql = "INSERT INTO " + DeckTable.DECKS_TABLE + " (" + DeckTable.DECKS_UID + ", " + DeckTable.DECKS_NAME + ", " + DeckTable.DECKS_DESCRIPTION + ") VALUES (?, ?, ?)";
+            try (Connection conn = DatabaseHandler.getDbConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, userId);
+                pstmt.setString(2, deck.getName());
+                pstmt.setString(3, deck.getDescription());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public static class CardDAO {
+        public void addCard(Card card, int deckId) {
+            String sql = "INSERT INTO " + CardsTable.CARDS_TABLE + " (" + CardsTable.CARDS_DID + ", " + CardsTable.CARDS_FRONTSIDE + ", " + CardsTable.CARDS_BACKSIDE + ") VALUES (?, ?, ?)";
+            try (Connection conn = DatabaseHandler.getDbConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, deckId);
+                pstmt.setString(2, card.getFrontside());
+                pstmt.setString(3, card.getBackside());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
