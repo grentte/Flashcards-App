@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
 
 public class FlashcardsController {
@@ -49,6 +50,7 @@ public class FlashcardsController {
                     FxmlLoader fxmlLoader = new FxmlLoader();
                     fxmlLoader.loadFxml("/org/example/flashcardsapp/home.fxml");
 
+
                     // Закрываем окно с авторизацией
                     Stage currentStage = (Stage) authSignInButton.getScene().getWindow();
                     currentStage.close();
@@ -82,9 +84,13 @@ public class FlashcardsController {
         try {
             while (result.next()) {
                 counter++;
+                user.setId(result.getInt("id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if (counter >= 1) {
+            Session.getInstance().setCurrentUser(user);
         }
         return counter;
     }

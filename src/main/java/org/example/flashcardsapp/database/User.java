@@ -1,6 +1,7 @@
 package org.example.flashcardsapp.database;
 
 public class User {
+    private int id;
     private String login;
     private String name;
     private String password;
@@ -11,9 +12,21 @@ public class User {
         this.password = password;
     }
 
+    public User(int id, String login, String name, String password) {
+        this.id = id;
+        this.login = login;
+        this.name = name;
+        this.password = password;
+    }
+
     public User() {}
 
-    public User(int i, String testLogin, String testName, String testPassword) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogin() {

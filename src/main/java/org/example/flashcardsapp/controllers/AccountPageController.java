@@ -48,7 +48,5 @@ public class AccountPageController {
             // Открываем ссылку на сайт
             NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
         });
-
     }
-
 }

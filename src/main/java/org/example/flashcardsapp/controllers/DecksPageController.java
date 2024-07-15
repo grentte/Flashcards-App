@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Deck;
+import org.example.flashcardsapp.database.Session;
+import org.example.flashcardsapp.database.User;
 
 public class DecksPageController {
 
@@ -69,17 +71,20 @@ public class DecksPageController {
     }
 
     public void addNewDeck() {
-        String name = "Deck1";
-        String description = "math";
+        String name = "Test1";
+        String description = "physics";
 
         Deck deck = new Deck(name, description);
         DatabaseHandler.DeckDAO deckDAO = new DatabaseHandler.DeckDAO();
 
-        int userId = 1; // Здесь можно получить ID пользователя из сессии или контекста
-        deckDAO.addDeck(deck, userId);
+        User currentUser = Session.getInstance().getCurrentUser();
 
-        // Закрываем текущее окно
-        Stage currentStage = (Stage) deckCreationButton.getScene().getWindow();
-        currentStage.close();
+        if (currentUser != null) {
+            int userId = currentUser.getId();
+            deckDAO.addDeck(deck, userId);
+            System.out.println("Deck added for user ID: " + userId);
+        } else {
+            System.out.println("No user is currently logged in.");
+        }
     }
 }

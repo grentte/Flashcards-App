@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
 
 public class SignUpController {
@@ -63,5 +64,7 @@ public class SignUpController {
         User user = new User(login, name, password);
 
         dbHandler.signUpUser(user);
+
+        Session.getInstance().setCurrentUser(user);
     }
 }

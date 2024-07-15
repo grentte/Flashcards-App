@@ -1,12 +1,12 @@
 package org.example.flashcardsapp.database;
 
 public class Deck {
-    private int deck_id;
+    private int user_id;
     private String name;
     private String description;
 
     public Deck(String name, String description) {
-        this.deck_id = 0;
+        this.user_id = user_id;
         this.name = name;
         this.description = description;
     }
@@ -27,7 +27,7 @@ public class Deck {
         this.description = description;
     }
 
-    public int getDeck_id() { return getDeck_id(); }
+    public int getUser_id() { return getUser_id(); }
 
-    public void setDeck_id(int deck_id) { this.deck_id = deck_id; }
+    public void setUser_id(int user_id) { this.user_id = user_id; }
 }

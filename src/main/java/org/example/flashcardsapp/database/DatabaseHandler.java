@@ -54,12 +54,16 @@ public class DatabaseHandler extends Configs {
     public static class DeckDAO {
         public void addDeck(Deck deck, int userId) {
             String sql = "INSERT INTO " + DeckTable.DECKS_TABLE + " (" + DeckTable.DECKS_UID + ", " + DeckTable.DECKS_NAME + ", " + DeckTable.DECKS_DESCRIPTION + ") VALUES (?, ?, ?)";
+
             try (Connection conn = DatabaseHandler.getDbConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
                 pstmt.setInt(1, userId);
                 pstmt.setString(2, deck.getName());
                 pstmt.setString(3, deck.getDescription());
+
                 pstmt.executeUpdate();
+
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -67,6 +71,8 @@ public class DatabaseHandler extends Configs {
             }
         }
     }
+
+
 
     public static class CardDAO {
         public void addCard(Card card, int deckId) {
