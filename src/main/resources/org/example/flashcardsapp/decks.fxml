@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.DecksPageController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.DecksPageController">
     <children>
         <AnchorPane prefHeight="50.0" prefWidth="700.0" style="-fx-background-color: #007FFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -74,8 +74,8 @@
                 </Button>
             </children>
         </AnchorPane>
-        <Button fx:id="deckCreationButton" layoutX="551.0" layoutY="68.0" mnemonicParsing="false" text="Создать колоду" AnchorPane.rightAnchor="47.5" AnchorPane.topAnchor="68.0" />
-        <Label contentDisplay="CENTER" layoutX="65.0" layoutY="60.0" prefHeight="42.0" prefWidth="486.0" text="Decks" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="60.0">
+        <Button fx:id="deckCreationButton" layoutX="551.0" layoutY="68.0" mnemonicParsing="false" style="-fx-background-color: #007FFF;" text="Создать колоду" textFill="#fafafa" AnchorPane.rightAnchor="47.5" AnchorPane.topAnchor="68.0" />
+        <Label contentDisplay="CENTER" layoutX="65.0" layoutY="60.0" prefHeight="42.0" prefWidth="486.0" text="Колоды" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="60.0">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -84,7 +84,7 @@
             </font>
         </Label>
         <ListView layoutX="65.0" layoutY="135.0" prefHeight="245.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
-        <Label layoutX="65.0" layoutY="104.0" prefHeight="31.0" prefWidth="169.0" text="your decks" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="466.0" AnchorPane.topAnchor="104.0">
+        <Label layoutX="65.0" layoutY="104.0" prefHeight="31.0" prefWidth="169.0" text="ваши колоды" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="466.0" AnchorPane.topAnchor="104.0">
             <font>
                 <Font name="Arial" size="19.0" />
             </font>
