@@ -83,7 +83,7 @@
                 <Font name="Arial" size="25.0" />
             </font>
         </Label>
-        <ListView layoutX="65.0" layoutY="135.0" prefHeight="245.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
+        <ListView fx:id="decksListView" layoutX="65.0" layoutY="135.0" prefHeight="245.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
         <Label layoutX="65.0" layoutY="104.0" prefHeight="31.0" prefWidth="169.0" text="ваши колоды" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="466.0" AnchorPane.topAnchor="104.0">
             <font>
                 <Font name="Arial" size="19.0" />

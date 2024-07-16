@@ -31,7 +31,7 @@ public class DeckCreationDialogController {
         if (currentUser != null) {
             int userId = currentUser.getId();
             deckDAO.addDeck(deck, userId);
-            System.out.println("Колода добавлена для польщователя с ID: " + userId);
+            System.out.println("Колода добавлена для пользователя с ID: " + userId);
         } else {
             System.out.println("Не найдено ID пользователя.");
         }

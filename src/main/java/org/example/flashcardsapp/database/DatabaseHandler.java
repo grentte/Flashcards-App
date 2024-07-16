@@ -3,8 +3,10 @@ package org.example.flashcardsapp.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler extends Configs {
     private static Connection dbConnection;
@@ -64,15 +66,33 @@ public class DatabaseHandler extends Configs {
 
                 pstmt.executeUpdate();
 
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
             }
         }
+
+        public List<Deck> getDecksByUserId(int userId) {
+            List<Deck> decks = new ArrayList<>();
+            String sql = "SELECT * FROM " + DeckTable.DECKS_TABLE + " WHERE " + DeckTable.DECKS_UID + " = ?";
+
+            try (Connection conn = DatabaseHandler.getDbConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, userId);
+                ResultSet resultSet = pstmt.executeQuery();
+
+                while (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    String description = resultSet.getString("description");
+                    Deck deck = new Deck(name, description);
+                    decks.add(deck);
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            return decks;
+        }
     }
-
-
 
     public static class CardDAO {
         public void addCard(Card card, int deckId) {
@@ -83,10 +103,8 @@ public class DatabaseHandler extends Configs {
                 pstmt.setString(2, card.getFrontside());
                 pstmt.setString(3, card.getBackside());
                 pstmt.executeUpdate();
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
             }
         }
     }
