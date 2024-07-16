@@ -44,6 +44,30 @@ public class NavigationManager {
         }
     }
 
+    public static void goToRegisterPage(Stage currentStage) {
+        FxmlLoader fxmlLoader = new FxmlLoader();
+        Parent root = fxmlLoader.loadFxml("/org/example/flashcardsapp/signUp.fxml");
+        if (root != null) {
+            Stage newStage = new Stage();
+            newStage.setTitle("Register Page");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+            currentStage.close();
+        }
+    }
+
+    public static void goToLoginPage(Stage currentStage) {
+        FxmlLoader fxmlLoader = new FxmlLoader();
+        Parent root = fxmlLoader.loadFxml("/org/example/flashcardsapp/login.fxml");
+        if (root != null) {
+            Stage newStage = new Stage();
+            newStage.setTitle("Login Page");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+            currentStage.close();
+        }
+    }
+
     public static void openWebPage(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));

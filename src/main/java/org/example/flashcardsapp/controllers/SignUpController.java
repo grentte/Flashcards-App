@@ -40,16 +40,16 @@ public class SignUpController {
             System.out.println("переход на страницу авторизации");
 
             // Переходим на страницу авторизации
-            FxmlLoader fxmlLoader = new FxmlLoader();
-            fxmlLoader.loadFxml("/org/example/flashcardsapp/login.fxml");
-
-            // Закрываем текущее окно
             Stage currentStage = (Stage) registerSignInButton.getScene().getWindow();
-            currentStage.close();
+            NavigationManager.goToLoginPage(currentStage);
         });
 
         signUpButton.setOnAction(event -> {
             signUpNewUser();
+
+            // После регистрации переходим на страницу с авторизацией
+            Stage currentStage = (Stage) registerSignInButton.getScene().getWindow();
+            NavigationManager.goToLoginPage(currentStage);
             System.out.println("регистрация");
         });
     }

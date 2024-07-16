@@ -29,6 +29,12 @@ public class DecksPageController {
     private Button deckCreationButton;
 
     @FXML
+    private Button accountButton;
+
+    @FXML
+    private Button webSiteUrlButton;
+
+    @FXML
     private ListView<String> decksListView;
 
     @FXML
@@ -40,8 +46,25 @@ public class DecksPageController {
     void initialize() {
         homeButton.setOnAction(event -> {
             System.out.println("переход на домашнюю страницу");
+
+            // Переходим на домашнюю страницу
             Stage currentStage = (Stage) homeButton.getScene().getWindow();
             NavigationManager.goToHomePage(currentStage);
+        });
+
+        accountButton.setOnAction(event -> {
+            System.out.println("переход на страницу аккаунта");
+
+            // Переходим на страницу с аккаунтом
+            Stage currentStage = (Stage) accountButton.getScene().getWindow();
+            NavigationManager.goToAccountPage(currentStage);
+        });
+
+        webSiteUrlButton.setOnAction(event -> {
+            System.out.println("переходим по ссылке на сайт");
+
+            // Переходим по ссылке на сайт
+            NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
         });
 
         if (deckCreationButton == null) {
@@ -69,7 +92,7 @@ public class DecksPageController {
             var decks = deckDAO.getDecksByUserId(userId);
 
             for (Deck deck : decks) {
-                deckList.add(deck.getName() + ": " + deck.getDescription());
+                deckList.add(deck.getName());
             }
 
             decksListView.setItems(deckList);

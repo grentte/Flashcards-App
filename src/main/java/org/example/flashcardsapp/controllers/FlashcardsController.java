@@ -62,12 +62,8 @@ public class FlashcardsController {
             System.out.println("переход на страницу регистрации");
 
             // Открываем окно с регистрацией
-            FxmlLoader fxmlLoader = new FxmlLoader();
-            fxmlLoader.loadFxml("/org/example/flashcardsapp/signUp.fxml");
-
-            // Закрываем окно с авторизацией
             Stage currentStage = (Stage) loginSignUpButton.getScene().getWindow();
-            currentStage.close();
+            NavigationManager.goToRegisterPage(currentStage);
         });
     }
 

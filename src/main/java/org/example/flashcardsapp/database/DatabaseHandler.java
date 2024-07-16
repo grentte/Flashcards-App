@@ -100,8 +100,8 @@ public class DatabaseHandler extends Configs {
             try (Connection conn = DatabaseHandler.getDbConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, deckId);
-                pstmt.setString(2, card.getFrontside());
-                pstmt.setString(3, card.getBackside());
+                pstmt.setString(2, card.getFrontSide());
+                pstmt.setString(3, card.getBackSide());
                 pstmt.executeUpdate();
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();

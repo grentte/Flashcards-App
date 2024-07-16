@@ -1,27 +1,27 @@
 package org.example.flashcardsapp.database;
 
 public class Card {
-    private String frontside;
-    private String backside;
+    private String frontSide;
+    private String backSide;
 
-    public Card(String frontside, String backside) {
-        this.frontside = frontside;
-        this.backside = backside;
+    public Card(String frontSide, String backSide) {
+        this.frontSide = frontSide;
+        this.backSide = backSide;
     }
 
-    public String getFrontside() {
-        return frontside;
+    public String getFrontSide() {
+        return frontSide;
     }
 
-    public void setFrontside(String frontside) {
-        this.frontside = frontside;
+    public void setFrontSide(String frontSide) {
+        this.frontSide = frontSide;
     }
 
-    public String getBackside() {
-        return backside;
+    public String getBackSide() {
+        return backSide;
     }
 
-    public void setBackside(String backside) {
-        this.backside = backside;
+    public void setBackSide(String backSide) {
+        this.backSide = backSide;
     }
 }
