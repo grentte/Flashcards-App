@@ -4,13 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.example.flashcardsapp.database.DatabaseHandler;
-import org.example.flashcardsapp.database.Deck;
-import org.example.flashcardsapp.database.Session;
-import org.example.flashcardsapp.database.User;
-
 public class DecksPageController {
 
     @FXML
@@ -30,12 +24,6 @@ public class DecksPageController {
 
     @FXML
     private Button webSiteUrlButton;
-
-    @FXML
-    public TextField deckNameField;
-
-    @FXML
-    public TextField deckDescriptionField;
 
     @FXML
     void initialize() {
@@ -66,25 +54,10 @@ public class DecksPageController {
 
         deckCreationButton.setOnAction(event -> {
             System.out.println("создание колоды");
-            addNewDeck();
+
+            // Выводим всплывающее окно для создание колоды
+            Stage currentStage = (Stage) deckCreationButton.getScene().getWindow();
+            NavigationManager.showDeckCreationDialog(currentStage);
         });
-    }
-
-    public void addNewDeck() {
-        String name = "Test1";
-        String description = "physics";
-
-        Deck deck = new Deck(name, description);
-        DatabaseHandler.DeckDAO deckDAO = new DatabaseHandler.DeckDAO();
-
-        User currentUser = Session.getInstance().getCurrentUser();
-
-        if (currentUser != null) {
-            int userId = currentUser.getId();
-            deckDAO.addDeck(deck, userId);
-            System.out.println("Deck added for user ID: " + userId);
-        } else {
-            System.out.println("No user is currently logged in.");
-        }
     }
 }

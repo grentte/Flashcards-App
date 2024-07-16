@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -47,13 +49,9 @@ public class FlashcardsController {
                     System.out.println("Вход...");
 
                     // Открываем окно с домашней страницей
-                    FxmlLoader fxmlLoader = new FxmlLoader();
-                    fxmlLoader.loadFxml("/org/example/flashcardsapp/home.fxml");
-
-
-                    // Закрываем окно с авторизацией
                     Stage currentStage = (Stage) authSignInButton.getScene().getWindow();
-                    currentStage.close();
+                    NavigationManager.goToHomePage(currentStage);
+
                 } else {
                     System.out.println("Неверные логин или пароль");
                 }
