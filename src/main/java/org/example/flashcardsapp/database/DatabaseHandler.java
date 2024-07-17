@@ -108,4 +108,31 @@ public class DatabaseHandler extends Configs {
             }
         }
     }
+    // Метод для смены имени пользователя
+    public void updateUserName(int userId, String newName) {
+        String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_NAME + "=? WHERE " + Const.USERS_ID + "=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
+            prSt.setString(1, newName);
+            prSt.setInt(2, userId);
+            prSt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Метод для смены пароля пользователя
+    public void updateUserPassword(int userId, String newPassword) {
+        String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_PASSWORD + "=? WHERE " + Const.USERS_ID + "=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
+            prSt.setString(1, newPassword);
+            prSt.setInt(2, userId);
+            prSt.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
