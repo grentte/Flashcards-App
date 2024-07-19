@@ -7,7 +7,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: fafafa;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.AccountPageController">
@@ -80,43 +79,39 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="55.0" layoutY="239.0" prefHeight="147.0" prefWidth="600.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="45.0">
-         <children>
-            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #fafafa;" text="E-mail">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Button>
-            <Separator prefWidth="200.0" />
-            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #fafafa;" text="Name">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Button>
-            <Separator prefHeight="3.0" prefWidth="200.0" />
-            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #fafafa;" text="Chenge password">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Button>
-            <Separator prefHeight="3.0" prefWidth="200.0" />
-            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #fafafa;" text="Delite account">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Button>
-            <Separator prefWidth="200.0" />
-            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: #fafafa;" text="Logout">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-      <Label layoutX="123.0" layoutY="137.0" prefHeight="63.0" prefWidth="464.0" text="здесь может быть когда-то появится статистика))">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="86.0" layoutY="100.0" prefHeight="63.0" prefWidth="464.0" text="здесь может быть когда-то появится статистика))" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
+      <Button alignment="BOTTOM_LEFT" layoutX="63.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="602.0" style="-fx-background-color: #fafafa;" text="E-mail" AnchorPane.bottomAnchor="185.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Separator layoutX="60.0" layoutY="213.0" prefHeight="3.0" prefWidth="200.0" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" />
+      <Button alignment="BOTTOM_LEFT" layoutX="63.0" layoutY="216.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="615.0" style="-fx-background-color: #fafafa;" text="Name" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Separator layoutX="63.0" layoutY="249.0" prefHeight="3.0" prefWidth="200.0" AnchorPane.bottomAnchor="148.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" />
+      <Button alignment="BOTTOM_LEFT" layoutX="63.0" layoutY="252.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="602.0" style="-fx-background-color: #fafafa;" text="Chenge password" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="63.0" layoutY="283.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="601.0" style="-fx-background-color: #fafafa;" text="Delite account" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Button alignment="BOTTOM_LEFT" layoutX="63.0" layoutY="321.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="601.0" style="-fx-background-color: #fafafa;" text="Logout" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Separator layoutX="63.0" layoutY="280.0" prefHeight="3.0" prefWidth="200.0" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" />
+      <Separator layoutX="63.0" layoutY="320.0" prefHeight="3.0" prefWidth="200.0" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" />
     </children>
 </AnchorPane>
