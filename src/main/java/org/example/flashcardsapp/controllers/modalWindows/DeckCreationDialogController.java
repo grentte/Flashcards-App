@@ -1,4 +1,4 @@
-package org.example.flashcardsapp.controllers;
+package org.example.flashcardsapp.controllers.modalWindows;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -19,8 +19,8 @@ public class DeckCreationDialogController {
     @FXML
     private void handleCreateDeck() {
         // записываем данные, которые ввел пользователь
-        String deckName = deckNameField.getText();
-        String deckDescription = deckDescriptionField.getText();
+        String deckName = deckNameField.getText().trim();
+        String deckDescription = deckDescriptionField.getText().trim();
 
         // добавляем колоду в базу данных
         Deck deck = new Deck(deckName, deckDescription);

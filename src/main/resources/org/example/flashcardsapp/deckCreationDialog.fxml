@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="222.0" prefWidth="334.0" spacing="10" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.DeckCreationDialogController">
+<VBox alignment="CENTER" prefHeight="222.0" prefWidth="334.0" spacing="10" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.modalWindows.DeckCreationDialogController">
     <Label text="Название колоды">
         <font>
             <Font name="Andale Mono" size="16.0" />

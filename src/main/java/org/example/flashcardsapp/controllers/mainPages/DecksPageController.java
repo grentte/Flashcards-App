@@ -1,4 +1,4 @@
-package org.example.flashcardsapp.controllers;
+package org.example.flashcardsapp.controllers.mainPages;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Deck;
 import org.example.flashcardsapp.database.Session;
@@ -40,7 +41,7 @@ public class DecksPageController {
     @FXML
     private Label errorMessageLabel;
 
-    private ObservableList<String> deckList = FXCollections.observableArrayList();
+    private final ObservableList<String> deckList = FXCollections.observableArrayList();
 
     @FXML
     void initialize() {
@@ -73,9 +74,11 @@ public class DecksPageController {
 
         deckCreationButton.setOnAction(event -> {
             System.out.println("Создание новой колоды");
+
             // Открытие окна создания новой колоды
             Stage currentStage = (Stage) deckCreationButton.getScene().getWindow();
             NavigationManager.showDeckCreationDialog(currentStage);
+
             // Перезагрузка колод после создания новой
             loadDecks();
         });

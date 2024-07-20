@@ -1,4 +1,4 @@
-package org.example.flashcardsapp.controllers;
+package org.example.flashcardsapp.controllers.mainPages;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

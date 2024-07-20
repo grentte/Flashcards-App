@@ -1,4 +1,4 @@
-package org.example.flashcardsapp.controllers;
+package org.example.flashcardsapp.controllers.navigation;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

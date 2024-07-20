@@ -108,6 +108,7 @@ public class DatabaseHandler extends Configs {
             }
         }
     }
+
     // Метод для смены имени пользователя
     public void updateUserName(int userId, String newName) {
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_NAME + "=? WHERE " + Const.USERS_ID + "=?";

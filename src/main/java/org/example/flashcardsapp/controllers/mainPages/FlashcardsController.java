@@ -1,17 +1,15 @@
-package org.example.flashcardsapp.controllers;
+package org.example.flashcardsapp.controllers.mainPages;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;

@@ -1,12 +1,13 @@
-package org.example.flashcardsapp.controllers;
+package org.example.flashcardsapp.controllers.mainPages;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 
-public class AccountPageController {
+public class HomePageController {
 
     @FXML
     private ResourceBundle resources;
@@ -15,37 +16,38 @@ public class AccountPageController {
     private URL location;
 
     @FXML
-    private Button decksButton;
+    private Button accountButton;
 
     @FXML
-    private Button homeButton;
+    private Button decksButton;
 
     @FXML
     private Button webSiteUrlButton;
 
     @FXML
     void initialize() {
-
-        homeButton.setOnAction(event -> {
-            System.out.println("переход на домашнюю страницу");
-
-            // Переходим на домашнюю страницу
-            Stage currentStage = (Stage) homeButton.getScene().getWindow();
-            NavigationManager.goToHomePage(currentStage);
-        });
-
         decksButton.setOnAction(event -> {
             System.out.println("переход на страницу с колодами");
 
             // Переходим на страницу с колодами
             Stage currentStage = (Stage) decksButton.getScene().getWindow();
             NavigationManager.goToDecksPage(currentStage);
+
+        });
+
+        accountButton.setOnAction(event -> {
+            System.out.println("переход на страницу аккаунта");
+
+            // Переходим на страницу с аккаунтом
+            Stage currentStage = (Stage) accountButton.getScene().getWindow();
+            NavigationManager.goToAccountPage(currentStage);
+
         });
 
         webSiteUrlButton.setOnAction(event -> {
             System.out.println("переходим по ссылке на сайт");
 
-            // Открываем ссылку на сайт
+            // Переходим по ссылке на сайт
             NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
         });
     }
