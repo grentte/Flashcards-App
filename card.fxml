@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.mainPages.DecksPageController">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="700.0" style="-fx-background-color: #007FFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutY="3.0" prefHeight="48.0" prefWidth="700.0" text="  Flashcards" textAlignment="CENTER" textFill="#fafafa" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
+                    <font>
+                        <Font name="Arial" size="24.0" />
+                    </font>
+                </Label>
+                <Button fx:id="webSiteUrlButton" layoutX="516.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: #007FFF;" text="ссылканасайт.ком" textFill="#fafafa" AnchorPane.rightAnchor="8.0">
+                    <font>
+                        <Font name="Arial" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="51.0" prefHeight="352.0" prefWidth="48.0" style="-fx-background-color: #007FFF;" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="51.0">
+            <children>
+                <Button fx:id="homeButton" ellipsisString="20" layoutX="-4.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" textOverrun="CENTER_ELLIPSIS" AnchorPane.topAnchor="7.0">
+                    <font>
+                        <Font name="Arial" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../icons/home.png"> </Image>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </padding>
+                </Button>
+                <Button fx:id="decksButton" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="76.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="38.0" style="-fx-background-color: #007FFF;" textFill="#fafafa" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="60.0">
+                    <font>
+                        <Font name="Arial" size="18.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </padding>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/decks.png"> </Image>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="accountButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="-11.0" layoutY="112.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #007FFF;" textAlignment="JUSTIFY" textFill="#fafafa" AnchorPane.topAnchor="112.0">
+                    <font>
+                        <Font name="Arial" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/account.png"> </Image>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                    </padding>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Button fx:id="deckCreationButton" layoutX="551.0" layoutY="68.0" mnemonicParsing="false" style="-fx-background-color: #007FFF;" text="Добавить карточку" textFill="#fafafa" AnchorPane.rightAnchor="47.5" AnchorPane.topAnchor="68.0">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Button>
+        <ListView fx:id="decksListView" layoutX="65.0" layoutY="135.0" prefHeight="245.0" prefWidth="610.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="135.0" />
+      <TextField accessibleRole="LIST_VIEW" layoutX="78.0" layoutY="66.0" prefHeight="51.0" prefWidth="304.0" style="-fx-background-color: #fafafa;" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="318.0" AnchorPane.topAnchor="66.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </TextField>
+      <Button fx:id="deckCreationButton1" layoutX="532.0" layoutY="97.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="121.0" style="-fx-background-color: #007FFF;" text="Просмотреть" textFill="#fafafa" AnchorPane.rightAnchor="47.5" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
