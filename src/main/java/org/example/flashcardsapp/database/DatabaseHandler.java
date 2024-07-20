@@ -109,8 +109,23 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    public static void updateLogin(int userId, String newLogin) {
+        String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_UNAME + "=? WHERE " + Const.USERS_ID + "=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
+            prSt.setString(1, newLogin);
+            prSt.setInt(2, userId);
+            prSt.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     // Метод для смены имени пользователя
-    public void updateUserName(int userId, String newName) {
+    public static void updateUserName(int userId, String newName) {
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_NAME + "=? WHERE " + Const.USERS_ID + "=?";
 
         try {
@@ -124,7 +139,7 @@ public class DatabaseHandler extends Configs {
     }
 
     // Метод для смены пароля пользователя
-    public void updateUserPassword(int userId, String newPassword) {
+    public static void updateUserPassword(int userId, String newPassword) {
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_PASSWORD + "=? WHERE " + Const.USERS_ID + "=?";
 
         try {
@@ -134,6 +149,44 @@ public class DatabaseHandler extends Configs {
             prSt.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+    public static void deleteUser(int userId) {
+        // Предполагаем, что у вас есть соединение с базой данных
+        String query = "DELETE FROM regusers WHERE id = ?";
+
+        try{
+            PreparedStatement prSt = getDbConnection().prepareStatement(query);
+
+                prSt.setInt(1, userId);
+                int rowsAffected = prSt.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Пользователь успешно удален");
+                } else {
+                    System.out.println("Ошибка при удалении пользователя");
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void deleteUserDecks(int userId) {
+        String query = "DELETE FROM " + DeckTable.DECKS_TABLE + " WHERE " + DeckTable.DECKS_UID + " = ?";
+
+        try{
+             PreparedStatement prSt = getDbConnection().prepareStatement(query);
+
+                prSt.setInt(1, userId);
+                int rowsAffected = prSt.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Все колоды пользователя удалены");
+                } else {
+                    System.out.println("Не найдено колод для удаления");
+                }
+
+        } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
         }
     }
 }

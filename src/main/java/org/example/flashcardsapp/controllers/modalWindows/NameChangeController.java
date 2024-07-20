@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.Session;
+import org.example.flashcardsapp.database.User;
 
 public class NameChangeController {
 
@@ -31,7 +34,8 @@ public class NameChangeController {
     @FXML
     void initialize() {
         confirmButton.setOnAction(event -> {
-            // "достаём" данные, введенные пользователем
+            User currentUser = Session.getInstance().getCurrentUser();
+            int id = currentUser.getId();
             String currentPasswordText = currentPassword.getText().trim();
             String newNameText = newName.getText().trim();
 
@@ -40,8 +44,14 @@ public class NameChangeController {
                 System.out.println("Пустые поля");
                 // Если поля не пустые (случай else), то меняем имя пользователя
             } else {
-                System.out.println("подтверждение смены имени пользователя");
-                // меняем имя пользователя, а потом закрываем окошко
+                if(currentUser.getPassword().equals(currentPasswordText)) {
+                    System.out.println("подтверждение смены имени пользователя");
+                    DatabaseHandler.updateUserName(id, newNameText);
+                    currentUser.setName(newNameText);
+                }
+                else {
+                    System.out.println("Неверный пароль");
+                }
 
                 Stage stage = (Stage) confirmButton.getScene().getWindow();
                 stage.close();

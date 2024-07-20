@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.Session;
+import org.example.flashcardsapp.database.User;
 
 public class LoginChangeController {
 
@@ -32,6 +35,8 @@ public class LoginChangeController {
     void initialize() {
         confirmButton.setOnAction(event -> {
             // "достаём" данные, введенные пользователем
+            User currentUser = Session.getInstance().getCurrentUser();
+            int id = currentUser.getId();
             String currentPasswordText = currentPassword.getText().trim();
             String newLoginText = newLogin.getText().trim();
 
@@ -40,8 +45,14 @@ public class LoginChangeController {
                 System.out.println("Пустые поля");
                 // Если поля не пустые (случай else), то меняем логин
             } else {
-                System.out.println("подтверждение смены логина");
-                // меняем логин, а потом закрываем окошко
+                if(currentUser.getPassword().equals(currentPasswordText)) {
+                    System.out.println("подтверждение смены логина");
+                    DatabaseHandler.updateLogin(id, newLoginText);
+                    currentUser.setLogin(newLoginText);
+                }
+                else {
+                    System.out.println("Неверный пароль");
+                }
 
                 Stage stage = (Stage) confirmButton.getScene().getWindow();
                 stage.close();
