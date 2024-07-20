@@ -11,8 +11,7 @@ import java.io.IOException;
 public class FxmlLoader {
 
     public Parent loadFxml(String fxmlFileName) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlFileName));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
 
         try {
             return loader.load();
@@ -22,9 +21,20 @@ public class FxmlLoader {
         }
     }
 
+    public LoaderResult loadFxmlWithController(String fxmlFileName) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
+
+        try {
+            Parent root = loader.load();
+            return new LoaderResult(root, loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new LoaderResult(null, null);
+        }
+    }
+
     public void loadFxmlAsDialog(String fxmlFileName, String title, Stage ownerStage) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlFileName));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
 
         try {
             Parent root = loader.load();
@@ -36,6 +46,24 @@ public class FxmlLoader {
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static class LoaderResult {
+        private final Parent root;
+        private final Object controller;
+
+        public LoaderResult(Parent root, Object controller) {
+            this.root = root;
+            this.controller = controller;
+        }
+
+        public Parent getRoot() {
+            return root;
+        }
+
+        public Object getController() {
+            return controller;
         }
     }
 }

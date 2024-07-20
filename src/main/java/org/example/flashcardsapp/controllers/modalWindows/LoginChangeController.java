@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 public class LoginChangeController {
 
@@ -34,7 +35,7 @@ public class LoginChangeController {
     @FXML
     void initialize() {
         confirmButton.setOnAction(event -> {
-            // "достаём" данные, введенные пользователем
+            // "Достаём" данные, введенные пользователем
             User currentUser = Session.getInstance().getCurrentUser();
             int id = currentUser.getId();
             String currentPasswordText = currentPassword.getText().trim();
@@ -42,20 +43,19 @@ public class LoginChangeController {
 
             // Проверяем, заполнил ли пользователь все поля
             if (currentPasswordText.isEmpty() || newLoginText.isEmpty()) {
-                System.out.println("Пустые поля");
-                // Если поля не пустые (случай else), то меняем логин
-            } else {
-                if(currentUser.getPassword().equals(currentPasswordText)) {
-                    System.out.println("подтверждение смены логина");
-                    DatabaseHandler.updateLogin(id, newLoginText);
-                    currentUser.setLogin(newLoginText);
-                }
-                else {
-                    System.out.println("Неверный пароль");
-                }
+                ErrorUtils.showError("Ошибка смены логина", "Пустые поля", "Пожалуйста, заполните все поля.");
+                return;
+            }
 
+            // Проверяем текущий пароль
+            if(currentUser.getPassword().equals(currentPasswordText)) {
+                System.out.println("подтверждение смены логина");
+                DatabaseHandler.updateLogin(id, newLoginText);
+                currentUser.setLogin(newLoginText);
                 Stage stage = (Stage) confirmButton.getScene().getWindow();
                 stage.close();
+            } else {
+                ErrorUtils.showError("Ошибка смены логина", "Неверный пароль", "Введен неверный пароль от аккаунта.");
             }
         });
 
@@ -67,5 +67,4 @@ public class LoginChangeController {
             stage.close();
         });
     }
-
 }

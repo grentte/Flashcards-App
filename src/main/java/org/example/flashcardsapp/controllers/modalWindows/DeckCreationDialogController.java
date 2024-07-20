@@ -7,6 +7,7 @@ import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Deck;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 public class DeckCreationDialogController {
 
@@ -21,6 +22,12 @@ public class DeckCreationDialogController {
         // записываем данные, которые ввел пользователь
         String deckName = deckNameField.getText().trim();
         String deckDescription = deckDescriptionField.getText().trim();
+
+        // проверяем пустое ли поле названия колоды
+        if (deckName.isEmpty()) {
+            ErrorUtils.showError("Ошибка создания колоды", "Пустое название", "Пожалуйста, введите название колоды.");
+            return;
+        }
 
         // добавляем колоду в базу данных
         Deck deck = new Deck(deckName, deckDescription);

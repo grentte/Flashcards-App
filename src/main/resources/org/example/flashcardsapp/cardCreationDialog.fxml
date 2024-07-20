@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="222.0" prefWidth="334.0" spacing="10" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.modalWindows.DeckCreationDialogController">
+<VBox alignment="CENTER" prefHeight="222.0" prefWidth="334.0" spacing="10" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.flashcardsapp.controllers.modalWindows.CardCreationDialogController">
     <Label text="Лицевая сторона">
         <font>
             <Font name="Andale Mono" size="16.0" />
         </font>
     </Label>
-    <TextField fx:id="deckNameField" prefHeight="26.0" prefWidth="288.0" style="-fx-background-color: #fafafa; -fx-border-color: silver;">
+    <TextField fx:id="frontSideField" prefHeight="26.0" prefWidth="288.0" style="-fx-background-color: #fafafa; -fx-border-color: silver;">
         <font>
             <Font name="Andale Mono" size="14.0" />
         </font>
@@ -22,12 +22,12 @@
             <Font name="Andale Mono" size="16.0" />
         </font>
     </Label>
-    <TextField fx:id="deckDescriptionField" style="-fx-background-color: #fafafa; -fx-border-color: silver;">
+    <TextField fx:id="backSideField" style="-fx-background-color: #fafafa; -fx-border-color: silver;">
         <font>
             <Font name="Andale Mono" size="14.0" />
         </font>
     </TextField>
-    <Button onAction="#handleCreateDeck" style="-fx-background-color: #007FFF;" text="Создать" textFill="#fafafa">
+    <Button onAction="#handleCreateCard" style="-fx-background-color: #007FFF;" text="Создать" textFill="#fafafa">
         <font>
             <Font name="Andale Mono" size="15.0" />
         </font>

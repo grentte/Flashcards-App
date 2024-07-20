@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 public class NameChangeController {
 
@@ -41,20 +42,19 @@ public class NameChangeController {
 
             // Проверяем, заполнил ли пользователь все поля
             if (currentPasswordText.isEmpty() || newNameText.isEmpty()) {
-                System.out.println("Пустые поля");
-                // Если поля не пустые (случай else), то меняем имя пользователя
-            } else {
-                if(currentUser.getPassword().equals(currentPasswordText)) {
-                    System.out.println("подтверждение смены имени пользователя");
-                    DatabaseHandler.updateUserName(id, newNameText);
-                    currentUser.setName(newNameText);
-                }
-                else {
-                    System.out.println("Неверный пароль");
-                }
+                ErrorUtils.showError("Ошибка смены имени пользователя", "Пустые поля", "Пожалуйста, заполните все поля.");
+                return;
+            }
 
+            // Проверяем текущий пароль
+            if(currentUser.getPassword().equals(currentPasswordText)) {
+                System.out.println("подтверждение смены имени пользователя");
+                DatabaseHandler.updateUserName(id, newNameText);
+                currentUser.setName(newNameText);
                 Stage stage = (Stage) confirmButton.getScene().getWindow();
                 stage.close();
+            } else {
+                ErrorUtils.showError("Ошибка смены имени пользователя", "Неверный пароль", "Введен неверный пароль от аккаунта.");
             }
         });
 
@@ -66,5 +66,4 @@ public class NameChangeController {
             stage.close();
         });
     }
-
 }

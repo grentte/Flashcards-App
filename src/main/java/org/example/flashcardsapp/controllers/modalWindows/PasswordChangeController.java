@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 public class PasswordChangeController {
 
@@ -33,7 +34,7 @@ public class PasswordChangeController {
     @FXML
     void initialize() {
         confirmButton.setOnAction(event -> {
-            // "достаём" данные, введенные пользователем
+            // "Достаём" данные, введенные пользователем
             User currentUser = Session.getInstance().getCurrentUser();
             int id = currentUser.getId();
             String currentPasswordText = currentPassword.getText().trim();
@@ -41,19 +42,19 @@ public class PasswordChangeController {
 
             // Проверяем, заполнил ли пользователь все поля
             if (currentPasswordText.isEmpty() || newPasswordText.isEmpty()) {
-                System.out.println("Пустые поля");
-                // Если поля не пустые (случай else), то меняем пароль
-            } else {
-                if(currentUser.getPassword().equals(currentPasswordText)) {
-                    System.out.println("подтверждение смены пароля");
-                    DatabaseHandler.updateUserPassword(id, newPasswordText);
-                    currentUser.setPassword(newPasswordText);
-                }
-                else {
-                    System.out.println("Неверный пароль");
-                }
+                ErrorUtils.showError("Ошибка смены пароля", "Пустые поля", "Пожалуйста, заполните все поля.");
+                return;
+            }
+
+            // Проверяем текущий пароль
+            if(currentUser.getPassword().equals(currentPasswordText)) {
+                System.out.println("подтверждение смены пароля");
+                DatabaseHandler.updateUserPassword(id, newPasswordText);
+                currentUser.setPassword(newPasswordText);
                 Stage stage = (Stage) confirmButton.getScene().getWindow();
                 stage.close();
+            } else {
+                ErrorUtils.showError("Ошибка смены пароля", "Неверный пароль", "Введен неверный пароль от аккаунта.");
             }
         });
 

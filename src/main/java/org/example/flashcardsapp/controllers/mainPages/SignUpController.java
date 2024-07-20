@@ -11,6 +11,7 @@ import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 public class SignUpController {
 
@@ -47,25 +48,34 @@ public class SignUpController {
 
         signUpButton.setOnAction(event -> {
             signUpNewUser();
-
-            // После регистрации переходим на страницу с авторизацией
-            Stage currentStage = (Stage) registerSignInButton.getScene().getWindow();
-            NavigationManager.goToLoginPage(currentStage);
-            System.out.println("регистрация");
         });
     }
 
     private void signUpNewUser() {
+        String login = loginField.getText().trim();
+        String name = nameField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if (login.isEmpty() || name.isEmpty() || password.isEmpty()) {
+            ErrorUtils.showError("Ошибка регистрации", "Пустые поля", "Пожалуйста, заполните все поля.");
+            return;
+        }
+
         DatabaseHandler dbHandler = new DatabaseHandler();
 
-        String login = loginField.getText();
-        String name = nameField.getText();
-        String password = passwordField.getText();
+        if (dbHandler.isUserExists(login)) {
+            ErrorUtils.showError("Ошибка регистрации", "Логин занят", "Логин уже занят. Пожалуйста, выберите другой логин.");
+            return;
+        }
 
         User user = new User(login, name, password);
 
         dbHandler.signUpUser(user);
-
         Session.getInstance().setCurrentUser(user);
+
+        // После регистрации переходим на страницу с авторизацией
+        Stage currentStage = (Stage) registerSignInButton.getScene().getWindow();
+        NavigationManager.goToLoginPage(currentStage);
+        System.out.println("регистрация");
     }
 }

@@ -13,18 +13,13 @@ public class DatabaseHandler extends Configs {
 
     public static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
-
-        // Используем правильное имя класса драйвера
         Class.forName("com.mysql.cj.jdbc.Driver");
-
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
         return dbConnection;
     }
 
     public void signUpUser(User user) {
-        // Исправляем SQL запрос: добавляем пробелы и правильный порядок
         String insert = "INSERT INTO " + Const.USER_TABLE + " (" + Const.USERS_UNAME + ", " + Const.USERS_NAME + ", " + Const.USERS_PASSWORD + ") VALUES (?, ?, ?)";
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(insert);
             prSt.setString(1, user.getLogin());
@@ -36,16 +31,26 @@ public class DatabaseHandler extends Configs {
         }
     }
 
+    public boolean isUserExists(String login) {
+        String query = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_UNAME + "=?";
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(query);
+            prSt.setString(1, login);
+            ResultSet resSet = prSt.executeQuery();
+            return resSet.next();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public ResultSet getUser(User user) {
         ResultSet resSet = null;
-
         String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_UNAME + "=? AND " + Const.USERS_PASSWORD + "=?";
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
             prSt.setString(1, user.getLogin());
             prSt.setString(2, user.getPassword());
-
             resSet = prSt.executeQuery();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -56,16 +61,12 @@ public class DatabaseHandler extends Configs {
     public static class DeckDAO {
         public void addDeck(Deck deck, int userId) {
             String sql = "INSERT INTO " + DeckTable.DECKS_TABLE + " (" + DeckTable.DECKS_UID + ", " + DeckTable.DECKS_NAME + ", " + DeckTable.DECKS_DESCRIPTION + ") VALUES (?, ?, ?)";
-
             try (Connection conn = DatabaseHandler.getDbConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
                 pstmt.setInt(1, userId);
                 pstmt.setString(2, deck.getName());
                 pstmt.setString(3, deck.getDescription());
-
                 pstmt.executeUpdate();
-
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -74,12 +75,10 @@ public class DatabaseHandler extends Configs {
         public List<Deck> getDecksByUserId(int userId) {
             List<Deck> decks = new ArrayList<>();
             String sql = "SELECT * FROM " + DeckTable.DECKS_TABLE + " WHERE " + DeckTable.DECKS_UID + " = ?";
-
             try (Connection conn = DatabaseHandler.getDbConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, userId);
                 ResultSet resultSet = pstmt.executeQuery();
-
                 while (resultSet.next()) {
                     String name = resultSet.getString("name");
                     String description = resultSet.getString("description");
@@ -89,7 +88,6 @@ public class DatabaseHandler extends Configs {
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
             return decks;
         }
     }
@@ -107,27 +105,41 @@ public class DatabaseHandler extends Configs {
                 e.printStackTrace();
             }
         }
+
+        public List<Card> getCardsByDeckId(int deckId) {
+            List<Card> cards = new ArrayList<>();
+            String sql = "SELECT * FROM " + CardsTable.CARDS_TABLE + " WHERE " + CardsTable.CARDS_DID + " = ?";
+            try (Connection conn = DatabaseHandler.getDbConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, deckId);
+                ResultSet resultSet = pstmt.executeQuery();
+                while (resultSet.next()) {
+                    String frontSide = resultSet.getString("frontSide");
+                    String backSide = resultSet.getString("backSide");
+                    Card card = new Card(frontSide, backSide);
+                    cards.add(card);
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return cards;
+        }
     }
 
     public static void updateLogin(int userId, String newLogin) {
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_UNAME + "=? WHERE " + Const.USERS_ID + "=?";
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(update);
             prSt.setString(1, newLogin);
             prSt.setInt(2, userId);
             prSt.executeUpdate();
-
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
-    // Метод для смены имени пользователя
     public static void updateUserName(int userId, String newName) {
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_NAME + "=? WHERE " + Const.USERS_ID + "=?";
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(update);
             prSt.setString(1, newName);
@@ -138,10 +150,8 @@ public class DatabaseHandler extends Configs {
         }
     }
 
-    // Метод для смены пароля пользователя
     public static void updateUserPassword(int userId, String newPassword) {
         String update = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_PASSWORD + "=? WHERE " + Const.USERS_ID + "=?";
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(update);
             prSt.setString(1, newPassword);
@@ -151,42 +161,36 @@ public class DatabaseHandler extends Configs {
             e.printStackTrace();
         }
     }
+
     public static void deleteUser(int userId) {
-        // Предполагаем, что у вас есть соединение с базой данных
-        String query = "DELETE FROM regusers WHERE id = ?";
-
-        try{
+        String query = "DELETE FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_ID + " = ?";
+        try {
             PreparedStatement prSt = getDbConnection().prepareStatement(query);
-
-                prSt.setInt(1, userId);
-                int rowsAffected = prSt.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    System.out.println("Пользователь успешно удален");
-                } else {
-                    System.out.println("Ошибка при удалении пользователя");
-                }
-            } catch (SQLException | ClassNotFoundException e) {
+            prSt.setInt(1, userId);
+            int rowsAffected = prSt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Пользователь успешно удален");
+            } else {
+                System.out.println("Ошибка при удалении пользователя");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
     public static void deleteUserDecks(int userId) {
         String query = "DELETE FROM " + DeckTable.DECKS_TABLE + " WHERE " + DeckTable.DECKS_UID + " = ?";
-
-        try{
-             PreparedStatement prSt = getDbConnection().prepareStatement(query);
-
-                prSt.setInt(1, userId);
-                int rowsAffected = prSt.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    System.out.println("Все колоды пользователя удалены");
-                } else {
-                    System.out.println("Не найдено колод для удаления");
-                }
-
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(query);
+            prSt.setInt(1, userId);
+            int rowsAffected = prSt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Все колоды пользователя удалены");
+            } else {
+                System.out.println("Не найдено колод для удаления");
+            }
         } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

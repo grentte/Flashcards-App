@@ -1,5 +1,6 @@
 package org.example.flashcardsapp.controllers.mainPages;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -82,6 +83,14 @@ public class DecksPageController {
             // Перезагрузка колод после создания новой
             loadDecks();
         });
+
+        // Добавляем слушатель для выбора элемента в ListView
+        decksListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                showChosenDeck(newValue);
+            }
+        });
+
         loadDecks();
     }
 
@@ -102,5 +111,11 @@ public class DecksPageController {
         } else {
             System.out.println("Не найдено ID пользователя.");
         }
+    }
+
+    private void showChosenDeck(String deckName) {
+        // Переходим к NavigationManager для открытия окна с выбранной колодой
+        Stage currentStage = (Stage) decksListView.getScene().getWindow();
+        NavigationManager.showChosenDeck(currentStage, deckName);
     }
 }

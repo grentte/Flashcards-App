@@ -13,6 +13,7 @@ import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
 import org.example.flashcardsapp.database.User;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 public class FlashcardsController {
 
@@ -40,7 +41,7 @@ public class FlashcardsController {
             String loginText = loginField.getText().trim();
             String passwordText = passwordField.getText().trim();
             if (loginText.isEmpty() || passwordText.isEmpty()) {
-                System.out.println("Пустые поля");
+                ErrorUtils.showError("Ошибка", "Пустые поля", "Пожалуйста, заполните все поля.");
             } else {
                 int counter = loginUser(loginText, passwordText);
                 if (counter >= 1) {
@@ -51,7 +52,7 @@ public class FlashcardsController {
                     NavigationManager.goToHomePage(currentStage);
 
                 } else {
-                    System.out.println("Неверные логин или пароль");
+                    ErrorUtils.showError("Ошибка входа", "Неверные логин или пароль", "Пожалуйста, проверьте введенные данные.");
                 }
             }
         });

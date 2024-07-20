@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.flashcardsapp.controllers.mainPages.ChosenDeckController;
 import org.example.flashcardsapp.controllers.modalWindows.AccountDeletionController;
 import org.example.flashcardsapp.controllers.modalWindows.LogoutController;
 
@@ -88,6 +89,11 @@ public class NavigationManager {
         fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/deckCreationDialog.fxml", "Создание новой колоды", ownerStage);
     }
 
+    public static void showCardCreationDialog(Stage ownerStage) {
+        FxmlLoader fxmlLoader = new FxmlLoader();
+        fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/cardCreationDialog.fxml", "Создание новой карточки", ownerStage);
+    }
+
     public static void showPasswordChangeDialog(Stage ownerStage) {
         FxmlLoader fxmlLoader = new FxmlLoader();
         fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/passwordChange.fxml", "Смена пароля", ownerStage);
@@ -144,6 +150,25 @@ public class NavigationManager {
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void showChosenDeck(Stage currentStage, String deckName) {
+        FxmlLoader fxmlLoader = new FxmlLoader();
+        FxmlLoader.LoaderResult result = fxmlLoader.loadFxmlWithController("/org/example/flashcardsapp/chosenDeck.fxml");
+
+        if (result.getRoot() != null) {
+            Parent root = result.getRoot();
+            ChosenDeckController controller = (ChosenDeckController) result.getController();
+            controller.setDeckName(deckName);
+
+            Stage newStage = new Stage();
+            newStage.setTitle("Информация о колоде");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+            // Закрытие текущего окна
+            currentStage.close();
         }
     }
 }
