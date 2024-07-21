@@ -101,12 +101,12 @@ public class NavigationManager {
 
     public static void showLoginChangeDialog(Stage ownerStage) {
         FxmlLoader fxmlLoader = new FxmlLoader();
-        fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/loginChange.fxml", "Смена логина", ownerStage);
+        fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/loginChange.fxml", "Изменение логина", ownerStage);
     }
 
     public static void showNameChangeDialog(Stage ownerStage) {
         FxmlLoader fxmlLoader = new FxmlLoader();
-        fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/nameChange.fxml", "Смена имени", ownerStage);
+        fxmlLoader.loadFxmlAsDialog("/org/example/flashcardsapp/nameChange.fxml", "Изменение имени", ownerStage);
     }
 
     public static void showLogoutDialog(Stage ownerStage) {

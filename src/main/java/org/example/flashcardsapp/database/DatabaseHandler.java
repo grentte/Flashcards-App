@@ -82,7 +82,7 @@ public class DatabaseHandler extends Configs {
                 while (resultSet.next()) {
                     String name = resultSet.getString("name");
                     String description = resultSet.getString("description");
-                    Deck deck = new Deck(name, description);
+                    Deck deck = new Deck(name, description); // Ensure Deck has a constructor with id
                     decks.add(deck);
                 }
             } catch (SQLException | ClassNotFoundException e) {
@@ -90,17 +90,50 @@ public class DatabaseHandler extends Configs {
             }
             return decks;
         }
+
+        public Deck getDeckByName(String deckName) {
+            Deck deck = null;
+            String sql = "SELECT * FROM " + DeckTable.DECKS_TABLE + " WHERE " + DeckTable.DECKS_NAME + " = ?";
+            try (Connection conn = DatabaseHandler.getDbConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, deckName);
+                ResultSet resultSet = pstmt.executeQuery();
+                if (resultSet.next()) {
+                    int id = resultSet.getInt("deck_id"); // Убедитесь, что поле называется "deck_id"
+                    String name = resultSet.getString("name");
+                    String description = resultSet.getString("description");
+
+                    deck = new Deck(name, description);
+                    deck.setDeck_id(id); // Устанавливаем deck_id после создания объекта
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return deck;
+        }
+
+
     }
 
     public static class CardDAO {
         public void addCard(Card card, int deckId) {
-            String sql = "INSERT INTO " + CardsTable.CARDS_TABLE + " (" + CardsTable.CARDS_DID + ", " + CardsTable.CARDS_FRONTSIDE + ", " + CardsTable.CARDS_BACKSIDE + ") VALUES (?, ?, ?)";
-            try (Connection conn = DatabaseHandler.getDbConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1, deckId);
-                pstmt.setString(2, card.getFrontSide());
-                pstmt.setString(3, card.getBackSide());
-                pstmt.executeUpdate();
+            String insertCardSQL = "INSERT INTO cards (frontSide, backSide, deck_id) VALUES (?, ?, ?)";
+
+            try (Connection connection = DatabaseHandler.getDbConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(insertCardSQL)) {
+
+                preparedStatement.setString(1, card.getFrontSide());
+                preparedStatement.setString(2, card.getBackSide());
+                preparedStatement.setInt(3, deckId);
+
+                int affectedRows = preparedStatement.executeUpdate();
+
+                if (affectedRows > 0) {
+                    System.out.println("Card added successfully.");
+                } else {
+                    System.out.println("Failed to add card. No rows affected.");
+                }
+
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

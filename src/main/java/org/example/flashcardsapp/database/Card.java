@@ -24,4 +24,9 @@ public class Card {
     public void setBackSide(String backSide) {
         this.backSide = backSide;
     }
+
+    @Override
+    public String toString() {
+        return "Вопрос: " + frontSide + ", Ответ: " + backSide;
+    }
 }

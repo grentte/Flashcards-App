@@ -3,6 +3,7 @@
     public class Session {
         private static Session instance;
         private User currentUser;
+        private int currentDeckId;
 
         private Session() {}
 
@@ -17,7 +18,16 @@
             return currentUser;
         }
 
+        public int getCurrentDeckId() {
+            return this.currentDeckId;
+        }
+
         public void setCurrentUser(User user) {
             this.currentUser = user;
         }
+
+        public void setCurrentDeckId(int deckId) {
+            this.currentDeckId = deckId;
+        }
     }
+

@@ -25,10 +25,12 @@ public class CardController {
         addCardButton.setOnAction(event -> addNewCard());
     }
 
+    // Установить ID текущей колоды
     public void setCurrentDeckId(int deckId) {
         this.currentDeckId = deckId;
     }
 
+    // Добавить новую карточку
     public void addNewCard() {
         String frontSide = frontSideField.getText();
         String backSide = backSideField.getText();
@@ -36,8 +38,8 @@ public class CardController {
         Card card = new Card(frontSide, backSide);
         DatabaseHandler.CardDAO cardDAO = new DatabaseHandler.CardDAO();
 
-        int deckId = 1; // Здесь можно получить ID колоды из контекста
-        cardDAO.addCard(card, deckId);
+        // Используем текущий ID колоды
+        cardDAO.addCard(card, currentDeckId);
 
         // Закрываем текущее окно
         Stage currentStage = (Stage) addCardButton.getScene().getWindow();

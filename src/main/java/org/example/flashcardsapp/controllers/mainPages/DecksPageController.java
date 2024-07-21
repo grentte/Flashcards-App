@@ -114,8 +114,20 @@ public class DecksPageController {
     }
 
     private void showChosenDeck(String deckName) {
-        // Переходим к NavigationManager для открытия окна с выбранной колодой
-        Stage currentStage = (Stage) decksListView.getScene().getWindow();
-        NavigationManager.showChosenDeck(currentStage, deckName);
+        DatabaseHandler.DeckDAO deckDAO = new DatabaseHandler.DeckDAO();
+        Deck deck = deckDAO.getDeckByName(deckName);
+
+        if (deck != null) {
+            // Устанавливаем текущую колоду в сессию
+            int deckId = deck.getDeck_id();
+            Session.getInstance().setCurrentDeckId(deckId);
+
+            // Переход к странице выбранной колоды
+            Stage currentStage = (Stage) decksListView.getScene().getWindow();
+            NavigationManager.showChosenDeck(currentStage, deckName);
+        } else {
+            System.out.println("Deck not found with name: " + deckName);
+        }
     }
 }
+

@@ -13,6 +13,8 @@ import org.example.flashcardsapp.controllers.modalWindows.CardCreationDialogCont
 import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.Card;
 import org.example.flashcardsapp.database.DatabaseHandler;
+import org.example.flashcardsapp.database.Session;
+import org.example.flashcardsapp.database.Deck;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,8 +44,6 @@ public class ChosenDeckController {
 
     @FXML
     private Button webSiteUrlButton;
-
-    private int deckId;
 
     @FXML
     void initialize() {
@@ -85,10 +85,6 @@ public class ChosenDeckController {
 
         cardCreationButton.setOnAction(event -> openCardCreationDialog());
         deckReviewButton.setOnAction(event -> reviewDeck());
-    }
-
-    public void setDeckId(int deckId) {
-        this.deckId = deckId;
         loadCards();
     }
 
@@ -99,18 +95,24 @@ public class ChosenDeckController {
 
     private void loadCards() {
         DatabaseHandler.CardDAO cardDAO = new DatabaseHandler.CardDAO();
-        List<Card> cards = cardDAO.getCardsByDeckId(deckId);
-        cardsListView.getItems().setAll(cards);
+        Session session = Session.getInstance();
+        int currentDeck = session.getCurrentDeckId();
+        if (currentDeck != 0) {
+            int deckId = currentDeck;
+            List<Card> cards = cardDAO.getCardsByDeckId(deckId);
+            cardsListView.getItems().setAll(cards);
+        } else {
+            System.out.println("Не найдена текущая колода.");
+        }
     }
 
     private void openCardCreationDialog() {
-        System.out.println("id: " + deckId);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/flashcardsapp/cardCreationDialog.fxml"));
             Parent parent = loader.load();
 
             CardCreationDialogController controller = loader.getController();
-            controller.setDeckId(deckId); // Передаем идентификатор колоды
+            // Нет необходимости передавать deckId, так как он будет извлечён из сессии
 
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
@@ -123,6 +125,7 @@ public class ChosenDeckController {
             e.printStackTrace();
         }
     }
+
 
     private void reviewDeck() {
         // Ваш код для просмотра колоды
