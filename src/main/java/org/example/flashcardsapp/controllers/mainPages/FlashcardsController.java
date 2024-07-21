@@ -58,8 +58,6 @@ public class FlashcardsController {
         });
 
         loginSignUpButton.setOnAction(event -> {
-            System.out.println("переход на страницу регистрации");
-
             // Открываем окно с регистрацией
             Stage currentStage = (Stage) loginSignUpButton.getScene().getWindow();
             NavigationManager.goToRegisterPage(currentStage);

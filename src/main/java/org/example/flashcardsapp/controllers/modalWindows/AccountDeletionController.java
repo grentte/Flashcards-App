@@ -33,36 +33,38 @@ public class AccountDeletionController {
     @FXML
     void initialize() {
         deleteButton.setOnAction(event -> {
-            System.out.println("подтверждение удаление аккаунта");
+            System.out.println("Подтверждение удаления аккаунта");
 
-            User currentUser = Session.getInstance().getCurrentUser();
-            int userId = currentUser.getId();
+            try {
+                User currentUser = Session.getInstance().getCurrentUser();
+                int userId = currentUser.getId();
 
-            // Удаляем пользователя и его колоды из базы данных
-            DatabaseHandler.deleteUser(userId);
-            DatabaseHandler.deleteUserDecks(userId);
+                // Удаляем пользователя
+                DatabaseHandler.deleteUser(userId);
 
-            // Обнуляем ID текущего пользователя в сессии
-            Session.getInstance().getCurrentUser().setId(0);
+                // Обнуляем ID текущего пользователя в сессии
+                Session.getInstance().getCurrentUser().setId(0);
 
-            // Закрываем всплывающее окно
-            Stage stage = (Stage) deleteButton.getScene().getWindow();
-            stage.close();
+                // Закрываем всплывающее окно
+                Stage stage = (Stage) deleteButton.getScene().getWindow();
+                stage.close();
 
-            // Закрываем основное окно
-            if (accountPageStage != null) {
-                accountPageStage.close();
+                // Закрываем основное окно
+                if (accountPageStage != null) {
+                    accountPageStage.close();
+                }
+
+                // Перенаправляем на страницу входа
+                NavigationManager.goToLoginPage(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Ошибка при удалении аккаунта: " + e.getMessage());
             }
-
-            // Перенаправляем на страницу входа
-            NavigationManager.goToLoginPage(stage);
-            // + еще нужно "обнулить" id пользователя
         });
 
         cancelButton.setOnAction(event -> {
-            System.out.println("отмена удаления аккаунта");
+            System.out.println("Отмена удаления аккаунта");
 
-            // Закрываем всплывающее окно
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
         });

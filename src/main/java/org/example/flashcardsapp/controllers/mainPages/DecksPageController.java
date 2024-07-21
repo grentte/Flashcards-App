@@ -47,26 +47,20 @@ public class DecksPageController {
     @FXML
     void initialize() {
         homeButton.setOnAction(event -> {
-            System.out.println("переход на домашнюю страницу");
-
             // Переходим на домашнюю страницу
             Stage currentStage = (Stage) homeButton.getScene().getWindow();
             NavigationManager.goToHomePage(currentStage);
         });
 
         accountButton.setOnAction(event -> {
-            System.out.println("переход на страницу аккаунта");
-
             // Переходим на страницу с аккаунтом
             Stage currentStage = (Stage) accountButton.getScene().getWindow();
             NavigationManager.goToAccountPage(currentStage);
         });
 
         webSiteUrlButton.setOnAction(event -> {
-            System.out.println("переходим по ссылке на сайт");
-
             // Переходим по ссылке на сайт
-            NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
+            NavigationManager.openWebPage();
         });
 
         if (deckCreationButton == null) {
@@ -74,8 +68,6 @@ public class DecksPageController {
         }
 
         deckCreationButton.setOnAction(event -> {
-            System.out.println("Создание новой колоды");
-
             // Открытие окна создания новой колоды
             Stage currentStage = (Stage) deckCreationButton.getScene().getWindow();
             NavigationManager.showDeckCreationDialog(currentStage);

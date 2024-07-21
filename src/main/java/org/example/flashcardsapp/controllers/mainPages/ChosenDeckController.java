@@ -14,6 +14,7 @@ import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.Card;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
+import org.example.flashcardsapp.utils.ErrorUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,34 +49,26 @@ public class ChosenDeckController {
     void initialize() {
 
         homeButton.setOnAction(event -> {
-            System.out.println("переход на домашнюю страницу");
-
             // Переходим на домашнюю страницу
             Stage currentStage = (Stage) homeButton.getScene().getWindow();
             NavigationManager.goToHomePage(currentStage);
         });
 
         decksButton.setOnAction(event -> {
-            System.out.println("переход на страницу с колодами");
-
             // Переходим на страницу с колодами
             Stage currentStage = (Stage) decksButton.getScene().getWindow();
             NavigationManager.goToDecksPage(currentStage);
         });
 
         accountButton.setOnAction(event -> {
-            System.out.println("переход на страницу аккаунта");
-
             // Переходим на страницу с аккаунтом
             Stage currentStage = (Stage) accountButton.getScene().getWindow();
             NavigationManager.goToAccountPage(currentStage);
         });
 
         webSiteUrlButton.setOnAction(event -> {
-            System.out.println("переходим по ссылке на сайт");
-
             // Переходим по ссылке на сайт
-            NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
+            NavigationManager.openWebPage();
         });
 
         if (cardCreationButton == null) {
@@ -164,13 +157,16 @@ public class ChosenDeckController {
                     stage.initOwner(currentStage);
                     stage.show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // Используем ErrorUtils для отображения сообщения об ошибке
+                    ErrorUtils.showError("Ошибка загрузки", "Не удалось загрузить представление карточек", e.getMessage());
                 }
             } else {
-                System.out.println("Колода пуста.");
+                // Используем ErrorUtils для отображения сообщения об ошибке
+                ErrorUtils.showError("Пустая колода", "Колода пуста", "В текущей колоде нет карточек.");
             }
         } else {
-            System.out.println("Не найдена текущая колода.");
+            // Используем ErrorUtils для отображения сообщения об ошибке
+            ErrorUtils.showError("Не найдена колода", "Ошибка текущей колоды", "Не найдена текущая колода.");
         }
     }
 

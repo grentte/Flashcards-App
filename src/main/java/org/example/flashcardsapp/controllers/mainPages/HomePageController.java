@@ -27,8 +27,6 @@ public class HomePageController {
     @FXML
     void initialize() {
         decksButton.setOnAction(event -> {
-            System.out.println("переход на страницу с колодами");
-
             // Переходим на страницу с колодами
             Stage currentStage = (Stage) decksButton.getScene().getWindow();
             NavigationManager.goToDecksPage(currentStage);
@@ -36,8 +34,6 @@ public class HomePageController {
         });
 
         accountButton.setOnAction(event -> {
-            System.out.println("переход на страницу аккаунта");
-
             // Переходим на страницу с аккаунтом
             Stage currentStage = (Stage) accountButton.getScene().getWindow();
             NavigationManager.goToAccountPage(currentStage);
@@ -45,10 +41,8 @@ public class HomePageController {
         });
 
         webSiteUrlButton.setOnAction(event -> {
-            System.out.println("переходим по ссылке на сайт");
-
             // Переходим по ссылке на сайт
-            NavigationManager.openWebPage("https://youtu.be/dQw4w9WgXcQ?si=Bkh6Wxm9IHRRA16s");
+            NavigationManager.openWebPage();
         });
     }
 }

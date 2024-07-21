@@ -39,8 +39,6 @@ public class SignUpController {
     @FXML
     void initialize() {
         registerSignInButton.setOnAction(event -> {
-            System.out.println("переход на страницу авторизации");
-
             // Переходим на страницу авторизации
             Stage currentStage = (Stage) registerSignInButton.getScene().getWindow();
             NavigationManager.goToLoginPage(currentStage);
