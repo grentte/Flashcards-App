@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="cardPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.1" fx:controller="org.example.flashcardsapp.controllers.modalWindows.CardViewController">
+    <children>
+        <StackPane fx:id="frontSide" alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+            <children>
+                <Label fx:id="frontLabel" text="Front Side" styleClass="card-label">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </StackPane>
+        <StackPane fx:id="backSide" alignment="CENTER" prefHeight="200.0" prefWidth="300.0" visible="false">
+            <children>
+                <Label fx:id="backLabel" text="Back Side" styleClass="card-label">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

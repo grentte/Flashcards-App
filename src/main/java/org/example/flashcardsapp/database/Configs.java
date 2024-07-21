@@ -5,5 +5,5 @@ public class Configs {
     protected static String dbPort = "3306";
     protected static String dbName = "auth";
     protected static String dbUser = "root";
-    protected static String dbPass = "1234";
+    protected static String dbPass = "mysql123$";
 }

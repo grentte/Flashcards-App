@@ -20,7 +20,7 @@ public class NavigationManager {
         Parent root = fxmlLoader.loadFxml("/org/example/flashcardsapp/decks.fxml");
         if (root != null) {
             Stage newStage = new Stage();
-            newStage.setTitle("Decks Page");
+            newStage.setTitle("Страница с колодами");
             newStage.setScene(new Scene(root));
             newStage.show();
             currentStage.close();
@@ -32,7 +32,7 @@ public class NavigationManager {
         Parent root = fxmlLoader.loadFxml("/org/example/flashcardsapp/account.fxml");
         if (root != null) {
             Stage newStage = new Stage();
-            newStage.setTitle("Account Page");
+            newStage.setTitle("Страница аккаунта");
             newStage.setScene(new Scene(root));
             newStage.show();
             currentStage.close();
@@ -44,7 +44,7 @@ public class NavigationManager {
         Parent root = fxmlLoader.loadFxml("/org/example/flashcardsapp/home.fxml");
         if (root != null) {
             Stage newStage = new Stage();
-            newStage.setTitle("Home Page");
+            newStage.setTitle("Домашняя страница");
             newStage.setScene(new Scene(root));
             newStage.show();
             currentStage.close();

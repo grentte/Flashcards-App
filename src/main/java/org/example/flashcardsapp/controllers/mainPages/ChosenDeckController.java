@@ -9,12 +9,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.flashcardsapp.controllers.modalWindows.CardCreationDialogController;
+import org.example.flashcardsapp.controllers.modalWindows.CardViewController;
 import org.example.flashcardsapp.controllers.navigation.NavigationManager;
 import org.example.flashcardsapp.database.Card;
 import org.example.flashcardsapp.database.DatabaseHandler;
 import org.example.flashcardsapp.database.Session;
-import org.example.flashcardsapp.database.Deck;
 
 import java.io.IOException;
 import java.util.List;
@@ -85,6 +84,14 @@ public class ChosenDeckController {
 
         cardCreationButton.setOnAction(event -> openCardCreationDialog());
         deckReviewButton.setOnAction(event -> reviewDeck());
+
+        // Добавление слушателя для списка карточек
+        cardsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                showChosenCard(newValue);
+            }
+        });
+
         loadCards();
     }
 
@@ -107,25 +114,29 @@ public class ChosenDeckController {
     }
 
     private void openCardCreationDialog() {
+        Stage currentStage = (Stage) cardCreationButton.getScene().getWindow();
+        NavigationManager.showCardCreationDialog(currentStage);
+
+        // После закрытия диалога обновляем список карточек
+        loadCards();
+    }
+
+    private void showChosenCard(Card card) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/flashcardsapp/cardCreationDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/flashcardsapp/CardView.fxml"));
             Parent parent = loader.load();
 
-            CardCreationDialogController controller = loader.getController();
-            // Нет необходимости передавать deckId, так как он будет извлечён из сессии
+            CardViewController controller = loader.getController();
+            controller.setCard(card);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-            // Обновляем список карточек после закрытия окна
-            loadCards();
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     private void reviewDeck() {
         // Ваш код для просмотра колоды
