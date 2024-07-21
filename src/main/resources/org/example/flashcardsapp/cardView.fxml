@@ -25,5 +25,7 @@
                 </Label>
             </children>
         </StackPane>
+        <Button fx:id="prevButton" text="Previous" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" />
+        <Button fx:id="nextButton" text="Next" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" />
     </children>
 </AnchorPane>

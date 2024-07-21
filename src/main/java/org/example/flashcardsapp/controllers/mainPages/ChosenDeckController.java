@@ -139,6 +139,39 @@ public class ChosenDeckController {
     }
 
     private void reviewDeck() {
-        // Ваш код для просмотра колоды
+        Stage currentStage = (Stage) deckReviewButton.getScene().getWindow();
+
+        // Загрузка карточек из базы данных
+        DatabaseHandler.CardDAO cardDAO = new DatabaseHandler.CardDAO();
+        Session session = Session.getInstance();
+        int currentDeck = session.getCurrentDeckId();
+        if (currentDeck != 0) {
+            int deckId = currentDeck;
+            List<Card> cards = cardDAO.getCardsByDeckId(deckId);
+
+            if (!cards.isEmpty()) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/flashcardsapp/CardView.fxml"));
+                    Parent parent = loader.load();
+
+                    CardViewController controller = loader.getController();
+                    controller.setCards(cards, 0); // Передаем карточки и начальный индекс
+
+                    Stage stage = new Stage();
+                    stage.setTitle("Просмотр колоды");
+                    stage.setScene(new Scene(parent));
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initOwner(currentStage);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Колода пуста.");
+            }
+        } else {
+            System.out.println("Не найдена текущая колода.");
+        }
     }
+
 }
