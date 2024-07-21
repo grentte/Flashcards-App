@@ -94,6 +94,7 @@ public class ChosenDeckController {
 
     public void setDeckName(String deckName) {
         chosenDeckTitle.setText(deckName);
+        chosenDeckTitle.setEditable(false);
     }
 
     private void loadCards() {
